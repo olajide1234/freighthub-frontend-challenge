@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -30,7 +31,9 @@ export default function ShipmentSummaryCard(shipment:IShipmentSummaryCardProps) 
               {shipment.total}
             </ListGroup.Item>
           </ListGroup>
-          <Button variant="primary">View shipment</Button>
+          <Link to={`/shipments/${shipment.id}`}>
+            <Button variant="primary">View shipment</Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>
