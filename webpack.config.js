@@ -3,7 +3,7 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack-configs/webpack.common');
 
-module.exports = env => {
+module.exports = (env) => {
   let config;
   if (!env.mode) {
     config = require('./webpack-configs/webpack.development');
