@@ -9,11 +9,11 @@ This is a solution to the [FreightHub frontend coding challenge!](https://github
 ### Images
 
 
-![homeone](https://github.com/olajide1234/freighthub-frontend-challenge/blob/develop/homeone.jpg?raw=true)
+![](https://github.com/olajide1234/freighthub-frontend-challenge/blob/develop/homeone.png)
 
-![hometwo](https://github.com/olajide1234/freighthub-frontend-challenge/blob/develop/hometwo.jpg?raw=true)
+![](https://github.com/olajide1234/freighthub-frontend-challenge/blob/develop/hometwo.png)
 
-![singleview](https://github.com/olajide1234/freighthub-frontend-challenge/blob/develop/singlepage.jpg?raw=true)
+![](https://github.com/olajide1234/freighthub-frontend-challenge/blob/develop/singlepage.png)
 
   
 
