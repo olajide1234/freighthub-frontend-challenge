@@ -2,7 +2,7 @@
 
   
 
-This is a solution to the [FreightHub frontend coding challenge!](https://github.com/freight-hub/freighthub-frontend-challenge#how-to-run-api-server)
+This is a solution to the [FreightHub frontend coding challenge!](https://github.com/freight-hub/freighthub-frontend-challenge)
 
   
 
