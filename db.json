@@ -30,7 +30,7 @@
     },
     {
       "id": "S1001",
-      "name": "New spring collection(2018)",
+      "name": "Test",
       "cargo": [
         {
           "type": "Furniture",
@@ -470,7 +470,7 @@
     },
     {
       "id": "S1018",
-      "name": "Scooters Blue/Green",
+      "name": "Purple",
       "cargo": [
         {
           "type": "Gororo",

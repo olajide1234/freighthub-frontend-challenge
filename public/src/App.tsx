@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import CardContainer from './public/src/components/CardContainer';
-import ShipmentDetailsView from './public/src/components/ShipmentDetailsView';
+import CardContainer from './components/CardContainer';
+import ShipmentDetailsView from './components/ShipmentDetailsView';
 
-import './public/src/styles/app.scss';
+import './styles/app.scss';
 
 export default function App() {
   return (

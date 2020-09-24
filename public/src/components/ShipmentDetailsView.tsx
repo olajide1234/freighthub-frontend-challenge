@@ -2,43 +2,20 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import Button from 'react-bootstrap/Button';
+import { useObserver } from 'mobx-react';
+import { StoreContext } from '../index';
 import ShipmentDetailCard from './ShipmentDetailCard';
 import Modal from './Modal';
 import { IShipment } from '../interfaces/index';
 import '../styles/shipment_details_view.scss';
 
-const shipment: IShipment = {
-  id: 'S1000',
-  name: 'T-shirts(Summer2018) from Shanghai to Hamburg',
-  cargo: [
-    {
-      type: 'Fabric',
-      description: '1000 Blue T-shirts',
-      volume: '2',
-    },
-    {
-      type: 'Fabric',
-      description: '2000 Green T-shirts',
-      volume: '3',
-    },
-  ],
-  mode: 'sea',
-  type: 'FCL',
-  destination: 'Saarbrücker Str. 38, 10405 Berlin',
-  origin: 'Shanghai Port',
-  services: [
-    {
-      type: 'customs',
-    },
-  ],
-  total: '1000',
-  status: 'ACTIVE',
-  userId: 'U1000',
-};
-
 export default function ShipmentDetailsView(props) {
+  const store = React.useContext(StoreContext);
   const [name, setName] = React.useState('');
   const [modalShow, setModalShow] = React.useState(false);
+  React.useEffect(() => {
+    store.shipmentDetailsStore.getShipmentDetails(props.match.params.shipmentId);
+  }, [modalShow]);
 
   const openModal = () => setModalShow(true);
 
@@ -47,15 +24,18 @@ export default function ShipmentDetailsView(props) {
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => setName(evt.target.value);
 
   const handleSave = () => {
-    // Post to store
+    store.shipmentDetailsStore.updateshipmentName(
+      name,
+      props.match.params.shipmentId,
+    );
     setName('');
     setModalShow(false);
   };
 
-  return (
+  return useObserver(() => (
     <>
       <Modal
-        oldName={shipment.name}
+        oldName={store.shipmentDetailsStore.shipment.name}
         modalShow={modalShow}
         isNameInputEmpty={Boolean(name)}
         handleSave={handleSave}
@@ -81,28 +61,51 @@ export default function ShipmentDetailsView(props) {
       </div>
 
       <h3 className="header">
-        {shipment.name}
+        {store.shipmentDetailsStore.shipmentName}
         {' '}
-        <sup className="edit-superscript" onClick={openModal}>edit</sup>
+        <sup className="edit-superscript" onClick={openModal}>
+          edit
+        </sup>
       </h3>
       <div className="details-card-container">
         <div className="row row-cols-1 row-cols-md-4">
-          <ShipmentDetailCard name="Shipment id" value={shipment.id} />
-          <ShipmentDetailCard name="Mode of transport" value={shipment.mode} />
-          <ShipmentDetailCard name="Type of shipment" value={shipment.type} />
+          <ShipmentDetailCard
+            name="Shipment id"
+            value={store.shipmentDetailsStore.shipment.id}
+          />
+          <ShipmentDetailCard
+            name="Mode of transport"
+            value={store.shipmentDetailsStore.shipment.mode}
+          />
+          <ShipmentDetailCard
+            name="Type of shipment"
+            value={store.shipmentDetailsStore.shipment.type}
+          />
           <ShipmentDetailCard
             name="Shipment destination"
-            value={shipment.destination}
+            value={store.shipmentDetailsStore.shipment.destination}
           />
-          <ShipmentDetailCard name="Shipment origin" value={shipment.origin} />
-          <ShipmentDetailCard name="Status" value={shipment.status} />
-          <ShipmentDetailCard name="User ID" value={shipment.userId} />
-          <ShipmentDetailCard name="Total" value={shipment.total} />
+          <ShipmentDetailCard
+            name="Shipment origin"
+            value={store.shipmentDetailsStore.shipment.origin}
+          />
+          <ShipmentDetailCard
+            name="Status"
+            value={store.shipmentDetailsStore.shipment.status}
+          />
+          <ShipmentDetailCard
+            name="User ID"
+            value={store.shipmentDetailsStore.shipment.userId}
+          />
+          <ShipmentDetailCard
+            name="Total"
+            value={store.shipmentDetailsStore.shipment.total}
+          />
         </div>
         <div className="d-flex justify-content-between">
           <div>
             <p>Cargo</p>
-            {shipment.cargo.map((item) => (
+            {store.shipmentDetailsStore.shipment.cargo.map((item) => (
               <ul key={uuidv4()}>
                 <li>{item.type}</li>
                 <li>{item.description}</li>
@@ -118,7 +121,7 @@ export default function ShipmentDetailsView(props) {
           </div>
           <div>
             <p>Services</p>
-            {shipment.services.map((item) => (
+            {store.shipmentDetailsStore.shipment.services.map((item) => (
               <ul key={uuidv4()}>
                 <li>
                   Type:
@@ -137,5 +140,5 @@ export default function ShipmentDetailsView(props) {
         </div>
       </div>
     </>
-  );
+  ));
 }

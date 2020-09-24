@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { IPaginationBottomProps } from '../interfaces/index';
+import { LIMIT, TOTAL_ITEMS } from '../constants';
 import '../styles/pagination_bottom.scss';
 
-export default function PaginationBottom({ active, total }: IPaginationBottomProps) {
+export default function PaginationBottom({ active, total, onPageChanged }: IPaginationBottomProps) {
   const items = [];
-  for (let number = 1; number <= total; number++) {
+  for (let number = 1; number <= (TOTAL_ITEMS / LIMIT); number++) {
     items.push(
       <Pagination.Item key={number} active={number === active}>
         {number}
@@ -15,7 +16,7 @@ export default function PaginationBottom({ active, total }: IPaginationBottomPro
 
   return (
     <div className="pagination">
-      <Pagination>{items}</Pagination>
+      <Pagination onClick={(e) => onPageChanged(Number(e.target.text))}>{items}</Pagination>
     </div>
   );
 }
