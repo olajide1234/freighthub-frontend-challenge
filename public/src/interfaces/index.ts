@@ -3,6 +3,7 @@ import { IPaginationBottomProps } from './pagination_bottom.interface';
 import { IShipmentDetailCardProps } from './shipment_detail_card.interface';
 import { IModalProps } from './modal.interface';
 import { IShipment } from './shipment.interface';
+import { ISortProps } from './sort.interface';
 
 export {
   IShipmentSummaryCardProps,
@@ -10,4 +11,5 @@ export {
   IShipmentDetailCardProps,
   IShipment,
   IModalProps,
+  ISortProps,
 };

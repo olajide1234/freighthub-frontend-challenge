@@ -1,0 +1,12 @@
+select {
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 20px;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  font-size: large;
+}
